@@ -105,6 +105,7 @@ document.getElementById('btn-calcular').addEventListener('click', () => {
     document.getElementById('pantalla-formulario').style.display = 'block';
 });
 
+
 document.getElementById('form-datos').addEventListener('submit', (e) => {
     e.preventDefault();
     const edad = parseFloat(document.getElementById('edad').value);

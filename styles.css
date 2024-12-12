@@ -4,6 +4,7 @@ body, html {
     font-family: Arial, sans-serif;
     height: 100%;
     width: 100%;
+    box-sizing: border-box;
 }
 
 #pantalla-inicial {
@@ -51,36 +52,103 @@ body, html {
     margin-bottom: 40px;
 }
 
-/* Pantalla formulario y pantalla cluster */
-#pantalla-formulario, #pantalla-cluster {
+/* Pantalla formulario */
+#pantalla-formulario {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-image: conic-gradient(orange, orangered);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: orange;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#pantalla-formulario h2 {
+    font-size: 60px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 
+                 0 4px 0 #aaa, 0 5px 0 #acacac, 
+                 0 6px 1px rgba(0,0,0,0.1), 
+                 0 0 5px rgba(0,0,0,0.1), 
+                 0 1px 3px rgba(0,0,0,0.3), 
+                 0 3px 5px rgba(0,0,0,0.2), 
+                 0 5px 10px rgba(0,0,0,0.25), 
+                 0 10px 10px rgba(0,0,0,0.2), 
+                 0 20px 20px rgba(0,0,0,0.15);
+    margin-bottom: 50px;
+}
+
+#pantalla-cluster {
     display: none;
     padding: 20px;
 }
 
-#pantalla-formulario h2, #pantalla-cluster h2 {
-    margin-top: 0;
+#form-datos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 label {
     display: block;
-    margin: 10px 0 5px;
+    margin: 20px 0 10px;
+    font-size: 20px;
+    color: #fff;
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 }
 
-input[type="number"] {
-    width: 200px;
-    padding: 10px;
-    font-size: 1em;
+.input {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+  width: 300px;
+  font-size: 20px;
+}
+
+.input:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696,
+             -13px -13px 100px #ffffff;
 }
 
 #pantalla-formulario button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #0d6efd;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
+  font-size: 24px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow,transform;
+  background: radial-gradient( 100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100% );
+  box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%), 0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%), inset 0px -0.01em 0px rgb(58 65 111 / 50%);
+  padding: 0 3em;
+  border-radius: 0.3em;
+  color: #fff;
+  height: 3em;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  margin-top: 40px;
+}
+
+#pantalla-formulario button:hover {
+  box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #3c4fe0;
+  transform: translateY(-0.1em);
+}
+
+#pantalla-formulario button:active {
+  box-shadow: inset 0px 0.1em 0.6em #3c4fe0;
+  transform: translateY(0em);
 }
 
 #resultado-cluster {
@@ -98,7 +166,29 @@ h3 {
     margin-bottom: 20px;
 }
 
-/* Estilos del botón 3D */
+.content .title, 
+.content .text {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 
+                 0 4px 0 #aaa, 0 5px 0 #acacac, 
+                 0 6px 1px rgba(0,0,0,0.1), 
+                 0 0 5px rgba(0,0,0,0.1), 
+                 0 1px 3px rgba(0,0,0,0.3), 
+                 0 3px 5px rgba(0,0,0,0.2), 
+                 0 5px 10px rgba(0,0,0,0.25), 
+                 0 10px 10px rgba(0,0,0,0.2), 
+                 0 20px 20px rgba(0,0,0,0.15);
+}
+
+.content .text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Estilos del botón 3D inicial */
 .parent {
     width: 290px;
     height: 300px;
@@ -135,23 +225,6 @@ h3 {
     padding: 100px 60px 0px 30px;
     transform: translate3d(0, 0, 26px);
 }
-
-.content .title, 
-.content .text {
-    display: block;
-    font-weight: bold;
-    /* Ajusta el tamaño y color a tu gusto */
-    font-size: 16px;
-    color: #fff;
-    text-shadow: 0px 0px 9px #e7bc1f;
-
-}
-
-.content .text {
-    margin-top: 15px;
-    font-size: 14px; /* Ajusta si deseas otro tamaño */
-}
-
 
 .bottom {
     padding: 10px 12px;
