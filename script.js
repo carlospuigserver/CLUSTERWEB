@@ -111,30 +111,38 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'auto';
     });
 
-    // Al seleccionar un grupo, mostramos el resultado del cluster
+    // Al seleccionar un grupo, mostramos el loader y luego el resultado del cluster
     document.querySelectorAll('.cards .card').forEach(card => {
         card.addEventListener('click', () => {
             const clusterId = card.getAttribute('data-cluster');
             const clusterSeleccionado = clusters.find(c => c.nombre.includes(clusterId));
 
             if (clusterSeleccionado) {
+                // Mostrar loader
                 document.getElementById('pantalla-seleccion').style.display = 'none';
-                document.getElementById('pantalla-cluster').style.display = 'block';
+                document.getElementById('loader').style.display = 'flex';
 
-                document.getElementById('resultado-cluster').innerHTML = `
-                    <h3>${clusterSeleccionado.estrategia.titulo}</h3>
-                    <p><strong>Objetivo:</strong> ${clusterSeleccionado.estrategia.objetivo}</p>
-                    <div class="beneficios">
-                        <strong>Beneficios:</strong> ${clusterSeleccionado.estrategia.beneficios}
-                    </div>
-                    <div class="dinamica">
-                        <strong>Dinámica:</strong> ${clusterSeleccionado.estrategia.dinamica}
-                    </div>
-                    <div class="impacto">
-                        <strong>Impacto Esperado:</strong> ${clusterSeleccionado.estrategia.impacto}
-                    </div>
-                    <p><strong>Definición de perfil:</strong> ${clusterSeleccionado.definicion}</p>
-                `;
+                // Simulación de tiempo de carga (2 segundos)
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('pantalla-cluster').style.display = 'block';
+
+                    // Mostrar datos del cluster
+                    document.getElementById('resultado-cluster').innerHTML = `
+                        <h3>${clusterSeleccionado.estrategia.titulo}</h3>
+                        <p><strong>Objetivo:</strong> ${clusterSeleccionado.estrategia.objetivo}</p>
+                        <div class="beneficios">
+                            <strong>Beneficios:</strong> ${clusterSeleccionado.estrategia.beneficios}
+                        </div>
+                        <div class="dinamica">
+                            <strong>Dinámica:</strong> ${clusterSeleccionado.estrategia.dinamica}
+                        </div>
+                        <div class="impacto">
+                            <strong>Impacto Esperado:</strong> ${clusterSeleccionado.estrategia.impacto}
+                        </div>
+                        <p><strong>Definición de perfil:</strong> ${clusterSeleccionado.definicion}</p>
+                    `;
+                }, 2000); // Cambia este tiempo según sea necesario
             }
         });
     });
