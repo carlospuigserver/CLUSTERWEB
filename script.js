@@ -1,10 +1,7 @@
-// Datos promedio de cada cluster:
+// Datos de clusters con estrategia (sin necesidad de cálculo)
 const clusters = [
     {
         nombre: "Cluster 0",
-        edad: 29.0,
-        ingresos: 21406.24,
-        gasto: 45.41,
         estrategia: {
             titulo: "Cluster 0: Clientes de ingresos y gastos bajos",
             objetivo: "Incrementar el volumen de compras a través de incentivos económicos y accesibles.",
@@ -22,13 +19,11 @@ const clusters = [
                 </ul>
             `,
             impacto: "Aumentar la retención mediante pequeños incentivos frecuentes, generar lealtad."
-        }
+        },
+        definicion: "Gasto mensual cuota medio, ingresos anuales bajos, perfil: Clientes de ingresos y gastos bajos, posiblemente en etapas iniciales de vida o con recursos limitados."
     },
     {
         nombre: "Cluster 1",
-        edad: 52.2,
-        ingresos: 82913.95,
-        gasto: 58.02,
         estrategia: {
             titulo: "Cluster 1: Profesionales acomodados con ingresos altos",
             objetivo: "Convertirlos en embajadores leales mediante recompensas VIP.",
@@ -47,13 +42,11 @@ const clusters = [
                 </ul>
             `,
             impacto: "Incrementar la frecuencia de compra y la lealtad, generar promoción orgánica."
-        }
+        },
+        definicion: "Gasto mensual alto, ingresos anuales altos, perfil: Profesionales con ingresos y estilo de vida acomodados."
     },
     {
         nombre: "Cluster 2-0",
-        edad: 61.0,
-        ingresos: 43520.77,
-        gasto: 46.58,
         estrategia: {
             titulo: "Cluster 2-0: Clientes mayores, ahorradores y con ingresos moderados",
             objetivo: "Incentivar el gasto moderado con beneficios tangibles y relevantes.",
@@ -71,13 +64,11 @@ const clusters = [
                 </ul>
             `,
             impacto: "Aumentar ligeramente el ticket promedio sin incomodar, mejorar la percepción de valor."
-        }
+        },
+        definicion: "Gasto mensual medio, ingresos anuales moderados, perfil: Clientes mayores, posiblemente ahorradores o con gastos controlados."
     },
     {
         nombre: "Cluster 2-1",
-        edad: 43.5,
-        ingresos: 72360.64,
-        gasto: 47.94,
         estrategia: {
             titulo: "Cluster 2-1: Adultos en etapa media con ingresos altos",
             objetivo: "Fomentar la transición hacia clientes premium (Cluster 1).",
@@ -95,67 +86,47 @@ const clusters = [
                 </ul>
             `,
             impacto: "Generar un comportamiento aspiracional que los mueva al cluster premium."
-        }
+        },
+        definicion: "Gasto mensual medio, ingresos anuales altos, perfil: Adultos en etapa media de la vida, con hábitos de gasto prudentes."
     }
 ];
 
-// Función para calcular la distancia al cluster
-function distanciaEuclidea(edadUser, ingresosUser, gastoUser, c) {
-    return Math.sqrt(
-        Math.pow(edadUser - c.edad, 2) +
-        Math.pow(ingresosUser - c.ingresos, 2) +
-        Math.pow(gastoUser - c.gasto, 2)
-    );
-}
-
 // Al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
+    // Botón para pasar de la pantalla inicial a la pantalla de selección
     document.getElementById('btn-calcular').addEventListener('click', () => {
-        // Ocultamos la pantalla inicial
         document.getElementById('pantalla-inicial').style.display = 'none';
-        // Mostramos la pantalla del formulario
-        document.getElementById('pantalla-formulario').style.display = 'flex';
-        // Permitimos scroll en la segunda pantalla (si es necesario)
+        document.getElementById('pantalla-seleccion').style.display = 'flex';
         document.body.style.overflow = 'auto';
     });
 
-    document.getElementById('form-datos').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const edad = parseFloat(document.getElementById('edad').value);
-        const ingresos = parseFloat(document.getElementById('ingresos').value);
-        const gasto = parseFloat(document.getElementById('gasto').value);
+    // Al hacer clic en una tarjeta de cluster
+    document.querySelectorAll('.cards .card').forEach(card => {
+        card.addEventListener('click', () => {
+            const clusterId = card.getAttribute('data-cluster');
 
-        // Calcular la distancia a cada cluster
-        let distancias = clusters.map((c) => {
-            return {
-                nombre: c.nombre,
-                dist: distanciaEuclidea(edad, ingresos, gasto, c),
-                estrategia: c.estrategia
-            };
+            // Buscar el cluster por nombre
+            const clusterSeleccionado = clusters.find(c => c.nombre.includes(clusterId));
+
+            if (clusterSeleccionado) {
+                document.getElementById('pantalla-seleccion').style.display = 'none';
+                document.getElementById('pantalla-cluster').style.display = 'block';
+
+                document.getElementById('resultado-cluster').innerHTML = `
+                    <h3>${clusterSeleccionado.estrategia.titulo}</h3>
+                    <p><strong>Objetivo:</strong> ${clusterSeleccionado.estrategia.objetivo}</p>
+                    <div class="beneficios">
+                        <strong>Beneficios:</strong> ${clusterSeleccionado.estrategia.beneficios}
+                    </div>
+                    <div class="dinamica">
+                        <strong>Dinámica:</strong> ${clusterSeleccionado.estrategia.dinamica}
+                    </div>
+                    <div class="impacto">
+                        <strong>Impacto Esperado:</strong> ${clusterSeleccionado.estrategia.impacto}
+                    </div>
+                    <p><strong>Definición de perfil:</strong> ${clusterSeleccionado.definicion}</p>
+                `;
+            }
         });
-
-        // Ordenar por distancia mínima
-        distancias.sort((a, b) => a.dist - b.dist);
-
-        // Tomar el cluster con la menor distancia
-        const clusterAsignado = distancias[0];
-
-        // Mostrar la pantalla de cluster con la estrategia
-        document.getElementById('pantalla-formulario').style.display = 'none';
-        document.getElementById('pantalla-cluster').style.display = 'block';
-
-        document.getElementById('resultado-cluster').innerHTML = `
-            <h3>${clusterAsignado.estrategia.titulo}</h3>
-            <p><strong>Objetivo:</strong> ${clusterAsignado.estrategia.objetivo}</p>
-            <div class="beneficios">
-                <strong>Beneficios:</strong> ${clusterAsignado.estrategia.beneficios}
-            </div>
-            <div class="dinamica">
-                <strong>Dinámica:</strong> ${clusterAsignado.estrategia.dinamica}
-            </div>
-            <div class="impacto">
-                <strong>Impacto Esperado:</strong> ${clusterAsignado.estrategia.impacto}
-            </div>
-        `;
     });
 });

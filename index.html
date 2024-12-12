@@ -62,20 +62,26 @@
     </div>
 </div>
 
-<div id="pantalla-formulario">
-    <h2>Ingrese sus datos</h2>
-    <form id="form-datos">
-        <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad" class="input" min="1" required>
-
-        <label for="ingresos">Ingresos Anuales (euros):</label>
-        <input type="number" id="ingresos" name="ingresos" class="input" min="0" required>
-
-        <label for="gasto">Gasto Mensual en Cuota (euros):</label>
-        <input type="number" id="gasto" name="gasto" class="input" min="0" required>
-
-        <button type="submit">Recomendar</button>
-    </form>
+<div id="pantalla-seleccion">
+    <h2>Seleccione su grupo</h2>
+    <div class="cards">
+        <div class="card red" data-cluster="0">
+            <p class="tip">Cluster 0</p>
+            <p class="second-text">Ingresos y gastos bajos, perfil joven</p>
+        </div>
+        <div class="card blue" data-cluster="1">
+            <p class="tip">Cluster 1</p>
+            <p class="second-text">Ingresos altos, alto gasto, perfil profesional</p>
+        </div>
+        <div class="card green" data-cluster="2-0">
+            <p class="tip">Cluster 2-0</p>
+            <p class="second-text">Ingresos moderados, gasto medio, mayores</p>
+        </div>
+        <div class="card purple" data-cluster="2-1">
+            <p class="tip">Cluster 2-1</p>
+            <p class="second-text">Ingresos altos, gasto medio, adultos en etapa media</p>
+        </div>
+    </div>
 </div>
 
 <div id="pantalla-cluster">
