@@ -18,7 +18,7 @@
 
     <h1 class="tuclase">Conexa</h1>
     
-    <!-- Botón "bienvenido" -->
+    <!-- Nuevo botón 3D y animado -->
     <button class="button" id="btn-bienvenido">
       <div class="bg"></div>
       <svg
@@ -29,7 +29,72 @@
         width="342"
         class="splash"
       >
-        <!-- Contenido SVG omitido por brevedad -->
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          d="M54.1054 99.7837C54.1054 99.7837 40.0984 90.7874 26.6893 97.6362C13.2802 104.485 1.5 97.6362 1.5 97.6362"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          d="M285.273 99.7841C285.273 99.7841 299.28 90.7879 312.689 97.6367C326.098 104.486 340.105 95.4893 340.105 95.4893"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          stroke-opacity="0.3"
+          d="M281.133 64.9917C281.133 64.9917 287.96 49.8089 302.934 48.2295C317.908 46.6501 319.712 36.5272 319.712 36.5272"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          stroke-opacity="0.3"
+          d="M281.133 138.984C281.133 138.984 287.96 154.167 302.934 155.746C317.908 157.326 319.712 167.449 319.712 167.449"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          d="M230.578 57.4476C230.578 57.4476 225.785 41.5051 236.061 30.4998C246.337 19.4945 244.686 12.9998 244.686 12.9998"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          d="M230.578 150.528C230.578 150.528 225.785 166.471 236.061 177.476C246.337 188.481 244.686 194.976 244.686 194.976"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          stroke-opacity="0.3"
+          d="M170.392 57.0278C170.392 57.0278 173.89 42.1322 169.571 29.54C165.252 16.9478 168.751 2.05227 168.751 2.05227"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          stroke-opacity="0.3"
+          d="M170.392 150.948C170.392 150.948 173.89 165.844 169.571 178.436C165.252 191.028 168.751 205.924 168.751 205.924"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          d="M112.609 57.4476C112.609 57.4476 117.401 41.5051 107.125 30.4998C96.8492 19.4945 98.5 12.9998 98.5 12.9998"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          d="M112.609 150.528C112.609 150.528 117.401 166.471 107.125 177.476C96.8492 188.481 98.5 194.976 98.5 194.976"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          stroke-opacity="0.3"
+          d="M62.2941 64.9917C62.2941 64.9917 55.4671 49.8089 40.4932 48.2295C25.5194 46.6501 23.7159 36.5272 23.7159 36.5272"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-width="3"
+          stroke-opacity="0.3"
+          d="M62.2941 145.984C62.2941 145.984 55.4671 161.167 40.4932 162.746C25.5194 164.326 23.7159 174.449 23.7159 174.449"
+        ></path>
       </svg>
 
       <div class="wrap">
@@ -41,13 +106,17 @@
           width="221"
           class="path"
         >
-          <!-- Contenido SVG omitido -->
+          <path
+            stroke-linecap="round"
+            stroke-width="3"
+            d="M182.674 2H203C211.837 2 219 9.16344 219 18V24C219 32.8366 211.837 40 203 40H18C9.16345 40 2 32.8366 2 24V18C2 9.16344 9.16344 2 18 2H47.8855"
+          ></path>
         </svg>
 
         <div class="outline"></div>
         <div class="content">
           <span class="char state-1">
-            <span data-label="b" style="--i: 1">b</span>
+            <span data-label="B" style="--i: 1">B</span>
             <span data-label="i" style="--i: 2">i</span>
             <span data-label="e" style="--i: 3">e</span>
             <span data-label="n" style="--i: 4">n</span>
@@ -59,10 +128,13 @@
             <span data-label="o" style="--i: 10">o</span>
           </span>
 
-          <div class="icon"><div></div></div>
+          <div class="icon">
+            <div></div>
+          </div>
 
           <span class="char state-2">
-            <span data-label="b" style="--i: 1">b</span>
+            <!-- Estado alternativo si se quiere alguna animación, sino se puede dejar igual -->
+            <span data-label="B" style="--i: 1">B</span>
             <span data-label="i" style="--i: 2">i</span>
             <span data-label="e" style="--i: 3">e</span>
             <span data-label="n" style="--i: 4">n</span>
@@ -100,27 +172,27 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Grupo 1</td>
+                    <td>Standard</td>
                     <td>45</td>
-                    <td>21,500</td>
+                    <td>21.500</td>
                     <td>29</td>
                 </tr>
                 <tr>
-                    <td>Grupo 2</td>
+                    <td>Pro</td>
                     <td>58</td>
-                    <td>83,000</td>
+                    <td>83.000</td>
                     <td>52</td>
                 </tr>
                 <tr>
-                    <td>Grupo 3</td>
+                    <td>Premium</td>
                     <td>47</td>
-                    <td>43,500</td>
+                    <td>43.500</td>
                     <td>61</td>
                 </tr>
                 <tr>
-                    <td>Grupo 4</td>
+                    <td>Elite</td>
                     <td>48</td>
-                    <td>72,000</td>
+                    <td>72.000</td>
                     <td>44</td>
                 </tr>
             </tbody>
@@ -130,28 +202,30 @@
     </div>
 </div>
 
-<div id="pantalla-seleccion" style="display:none;">
+<!-- Pantalla selección -->
+<div id="pantalla-seleccion" class="area" style="display:none;">
+    <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li>
+    </ul>
     <h2>Seleccione su grupo</h2>
     <div class="cards">
         <div class="card red" data-cluster="0">
-            <p class="tip">Grupo 0</p>
-            <p class="second-text">Ingresos y gastos bajos, perfil joven</p>
+            <p class="tip">Standard</p>
         </div>
         <div class="card blue" data-cluster="1">
-            <p class="tip">Grupo 1</p>
-            <p class="second-text">Ingresos altos, alto gasto, perfil profesional</p>
+            <p class="tip">Pro</p>
         </div>
         <div class="card green" data-cluster="2-0">
-            <p class="tip">Grupo 2-0</p>
-            <p class="second-text">Ingresos moderados, gasto medio, mayores</p>
+            <p class="tip">Premium</p>
         </div>
         <div class="card purple" data-cluster="2-1">
-            <p class="tip">Grupo 2-1</p>
-            <p class="second-text">Ingresos altos, gasto medio, adultos en etapa media</p>
+            <p class="tip">Elite</p>
         </div>
     </div>
 </div>
 
+<!-- Pantalla cluster -->
 <div id="pantalla-cluster" style="display:none;">
     <h2>Resultado del Grupo</h2>
     <div id="resultado-cluster"></div>
