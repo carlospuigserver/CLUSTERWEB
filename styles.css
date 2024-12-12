@@ -1,25 +1,54 @@
-body, html {
+html, body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
+    overflow: hidden; /* Evitar scroll al inicio */
+}
+
+/* Ajustar z-index y fondo de cada pantalla */
+#pantalla-inicial, #pantalla-formulario, #pantalla-cluster {
+    position: absolute;
+    top:0; left:0;
+    width: 100vw;
+    height: 100vh;
 }
 
 #pantalla-inicial {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    color: #fff;
+    z-index: 3;
+    background: #ff6500; /* Fondo sólido para no ver nada detrás */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden;
 }
 
+#pantalla-formulario {
+    z-index: 2;
+    display: none;
+    background-image: conic-gradient(orange, orangered);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: orange;    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+#pantalla-cluster {
+    z-index: 1;
+    display: none;
+    background: #f0f0f0;
+    padding: 20px;
+}
+
+/* Si la pantalla inicial tiene un container con un fondo patrón, aseguramos que no sea transparente */
 .container {
     position: absolute;
     top:0; left:0; right:0; bottom:0;
@@ -31,16 +60,16 @@ body, html {
     repeating-linear-gradient(180deg, transparent 30px, rgba(255, 0, 0, 0.2) 10px, rgba(255, 238, 0, 0.2) 90px);
 }
 
-/* Estilo para el título "Conexa" */
+/* Título Conexa */
 .tuclase {
     text-align: left; 
     font-family: "Arial Black", sans-serif; 
     font-weight: bold; 
     font-size: 90px;
     color: rgb(238, 245, 238);
-     
-    text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #aaa, 
-                 0 5px 0 #acacac, 0 6px 1px rgba(0,0,0,0.1), 
+    text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 
+                 0 4px 0 #aaa, 0 5px 0 #acacac, 
+                 0 6px 1px rgba(0,0,0,0.1), 
                  0 0 5px rgba(0,0,0,0.1), 
                  0 1px 3px rgba(0,0,0,0.3), 
                  0 3px 5px rgba(0,0,0,0.2), 
@@ -52,23 +81,7 @@ body, html {
     margin-bottom: 40px;
 }
 
-/* Pantalla formulario */
-#pantalla-formulario {
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    background-image: conic-gradient(orange, orangered);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-color: orange;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
+/* Formulario */
 #pantalla-formulario h2 {
     font-size: 60px;
     font-weight: bold;
@@ -83,11 +96,6 @@ body, html {
                  0 10px 10px rgba(0,0,0,0.2), 
                  0 20px 20px rgba(0,0,0,0.15);
     margin-bottom: 50px;
-}
-
-#pantalla-cluster {
-    display: none;
-    padding: 20px;
 }
 
 #form-datos {
@@ -151,21 +159,18 @@ label {
   transform: translateY(0em);
 }
 
-#resultado-cluster {
-    margin-top: 20px;
-    background: #f0f0f0;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-h3 {
-    margin-top: 0;
+/* Pantalla cluster */
+#pantalla-cluster h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .beneficios, .dinamica, .impacto {
     margin-bottom: 20px;
 }
 
+/* Botón 3D */
 .content .title, 
 .content .text {
     display: block;
@@ -188,7 +193,6 @@ h3 {
     font-size: 14px;
 }
 
-/* Estilos del botón 3D inicial */
 .parent {
     width: 290px;
     height: 300px;

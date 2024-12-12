@@ -13,12 +13,14 @@ const clusters = [
                     <li>Descuentos de entrada (20% en la segunda compra del mes)</li>
                     <li>Bundles económicos</li>
                     <li>Puntos iniciales al registrarse</li>
-                </ul>`,
+                </ul>
+            `,
             dinamica: `
                 <ul>
                     <li>Recompensas inmediatas por cada gasto recurrente</li>
                     <li>Juegos sencillos: “Completa X compras al mes y gana un descuento adicional.”</li>
-                </ul>`,
+                </ul>
+            `,
             impacto: "Aumentar la retención mediante pequeños incentivos frecuentes, generar lealtad."
         }
     },
@@ -35,13 +37,15 @@ const clusters = [
                     <li>Experiencias exclusivas: eventos privados, lanzamientos especiales</li>
                     <li>Reconocimiento público: “Clientes Élite”</li>
                     <li>Gestores personales: Soporte premium</li>
-                </ul>`,
+                </ul>
+            `,
             dinamica: `
                 <ul>
                     <li>Competencia mensual: “Los 10 clientes con mayor gasto reciben una experiencia VIP.”</li>
                     <li>Programas de puntos avanzados con bonos significativos</li>
                     <li>Comunidades exclusivas para networking</li>
-                </ul>`,
+                </ul>
+            `,
             impacto: "Incrementar la frecuencia de compra y la lealtad, generar promoción orgánica."
         }
     },
@@ -58,12 +62,14 @@ const clusters = [
                     <li>Recompensas acumuladas</li>
                     <li>Acceso anticipado a ofertas</li>
                     <li>Beneficios prácticos: entregas gratuitas, productos extra</li>
-                </ul>`,
+                </ul>
+            `,
             dinamica: `
                 <ul>
-                    <li>Promociones acumulativas: “Gasta $100/trim y obtén $20 de bono.”</li>
+                    <li>Promociones acumulativas: “Gasta €100/trim y obtén €20 de bono.”</li>
                     <li>Competencias por gasto regular con beneficios adicionales</li>
-                </ul>`,
+                </ul>
+            `,
             impacto: "Aumentar ligeramente el ticket promedio sin incomodar, mejorar la percepción de valor."
         }
     },
@@ -80,12 +86,14 @@ const clusters = [
                     <li>Membresías Plata: Descuentos en productos premium</li>
                     <li>Ofertas para incrementar su gasto promedio mensual</li>
                     <li>Beneficios familiares: bonificaciones por referidos</li>
-                </ul>`,
+                </ul>
+            `,
             dinamica: `
                 <ul>
                     <li>Incentivos por aumentar el gasto: “Aumenta tu gasto en un 20% y recibe 10% extra.”</li>
                     <li>Gamificación social: competencias entre clientes similares</li>
-                </ul>`,
+                </ul>
+            `,
             impacto: "Generar un comportamiento aspiracional que los mueva al cluster premium."
         }
     }
@@ -100,48 +108,54 @@ function distanciaEuclidea(edadUser, ingresosUser, gastoUser, c) {
     );
 }
 
-document.getElementById('btn-calcular').addEventListener('click', () => {
-    document.getElementById('pantalla-inicial').style.display = 'none';
-    document.getElementById('pantalla-formulario').style.display = 'block';
-});
-
-
-document.getElementById('form-datos').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const edad = parseFloat(document.getElementById('edad').value);
-    const ingresos = parseFloat(document.getElementById('ingresos').value);
-    const gasto = parseFloat(document.getElementById('gasto').value);
-
-    // Calcular la distancia a cada cluster
-    let distancias = clusters.map((c) => {
-        return {
-            nombre: c.nombre,
-            dist: distanciaEuclidea(edad, ingresos, gasto, c),
-            estrategia: c.estrategia
-        };
+// Al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('btn-calcular').addEventListener('click', () => {
+        // Ocultamos la pantalla inicial
+        document.getElementById('pantalla-inicial').style.display = 'none';
+        // Mostramos la pantalla del formulario
+        document.getElementById('pantalla-formulario').style.display = 'flex';
+        // Permitimos scroll en la segunda pantalla (si es necesario)
+        document.body.style.overflow = 'auto';
     });
 
-    // Ordenar por distancia mínima
-    distancias.sort((a, b) => a.dist - b.dist);
+    document.getElementById('form-datos').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const edad = parseFloat(document.getElementById('edad').value);
+        const ingresos = parseFloat(document.getElementById('ingresos').value);
+        const gasto = parseFloat(document.getElementById('gasto').value);
 
-    // Tomar el cluster con la menor distancia
-    const clusterAsignado = distancias[0];
+        // Calcular la distancia a cada cluster
+        let distancias = clusters.map((c) => {
+            return {
+                nombre: c.nombre,
+                dist: distanciaEuclidea(edad, ingresos, gasto, c),
+                estrategia: c.estrategia
+            };
+        });
 
-    // Mostrar la pantalla de cluster con la estrategia
-    document.getElementById('pantalla-formulario').style.display = 'none';
-    document.getElementById('pantalla-cluster').style.display = 'block';
+        // Ordenar por distancia mínima
+        distancias.sort((a, b) => a.dist - b.dist);
 
-    document.getElementById('resultado-cluster').innerHTML = `
-        <h3>${clusterAsignado.estrategia.titulo}</h3>
-        <p><strong>Objetivo:</strong> ${clusterAsignado.estrategia.objetivo}</p>
-        <div class="beneficios">
-            <strong>Beneficios:</strong> ${clusterAsignado.estrategia.beneficios}
-        </div>
-        <div class="dinamica">
-            <strong>Dinámica:</strong> ${clusterAsignado.estrategia.dinamica}
-        </div>
-        <div class="impacto">
-            <strong>Impacto Esperado:</strong> ${clusterAsignado.estrategia.impacto}
-        </div>
-    `;
+        // Tomar el cluster con la menor distancia
+        const clusterAsignado = distancias[0];
+
+        // Mostrar la pantalla de cluster con la estrategia
+        document.getElementById('pantalla-formulario').style.display = 'none';
+        document.getElementById('pantalla-cluster').style.display = 'block';
+
+        document.getElementById('resultado-cluster').innerHTML = `
+            <h3>${clusterAsignado.estrategia.titulo}</h3>
+            <p><strong>Objetivo:</strong> ${clusterAsignado.estrategia.objetivo}</p>
+            <div class="beneficios">
+                <strong>Beneficios:</strong> ${clusterAsignado.estrategia.beneficios}
+            </div>
+            <div class="dinamica">
+                <strong>Dinámica:</strong> ${clusterAsignado.estrategia.dinamica}
+            </div>
+            <div class="impacto">
+                <strong>Impacto Esperado:</strong> ${clusterAsignado.estrategia.impacto}
+            </div>
+        `;
+    });
 });
