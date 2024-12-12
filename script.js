@@ -20,7 +20,7 @@ const clusters = [
             `,
             impacto: "Aumentar la retención mediante pequeños incentivos frecuentes, generar lealtad."
         },
-        definicion: "Gasto mensual cuota medio, ingresos anuales bajos, perfil: Clientes de ingresos y gastos bajos, posiblemente en etapas iniciales de vida o con recursos limitados."
+        definicion: "Gasto mensual cuota medio, ingresos anuales bajos, perfil: Clientes de ingresos y gastos bajos."
     },
     {
         nombre: "Cluster 1",
@@ -43,13 +43,13 @@ const clusters = [
             `,
             impacto: "Incrementar la frecuencia de compra y la lealtad, generar promoción orgánica."
         },
-        definicion: "Gasto mensual alto, ingresos anuales altos, perfil: Profesionales con ingresos y estilo de vida acomodados."
+        definicion: "Gasto mensual alto, ingresos anuales altos, perfil: Profesionales con ingresos acomodados."
     },
     {
         nombre: "Cluster 2-0",
         estrategia: {
-            titulo: "Cluster 2-0: Clientes mayores, ahorradores y con ingresos moderados",
-            objetivo: "Incentivar el gasto moderado con beneficios tangibles y relevantes.",
+            titulo: "Cluster 2-0: Clientes mayores, ahorradores con ingresos moderados",
+            objetivo: "Incentivar el gasto moderado con beneficios tangibles.",
             beneficios: `
                 <ul>
                     <li>Recompensas acumuladas</li>
@@ -63,9 +63,9 @@ const clusters = [
                     <li>Competencias por gasto regular con beneficios adicionales</li>
                 </ul>
             `,
-            impacto: "Aumentar ligeramente el ticket promedio sin incomodar, mejorar la percepción de valor."
+            impacto: "Aumentar ligeramente el ticket promedio, mejorar la percepción de valor."
         },
-        definicion: "Gasto mensual medio, ingresos anuales moderados, perfil: Clientes mayores, posiblemente ahorradores o con gastos controlados."
+        definicion: "Gasto mensual medio, ingresos anuales moderados, clientes mayores y ahorradores."
     },
     {
         nombre: "Cluster 2-1",
@@ -75,36 +75,43 @@ const clusters = [
             beneficios: `
                 <ul>
                     <li>Membresías Plata: Descuentos en productos premium</li>
-                    <li>Ofertas para incrementar su gasto promedio mensual</li>
+                    <li>Ofertas para incrementar el gasto promedio mensual</li>
                     <li>Beneficios familiares: bonificaciones por referidos</li>
                 </ul>
             `,
             dinamica: `
                 <ul>
-                    <li>Incentivos por aumentar el gasto: “Aumenta tu gasto en un 20% y recibe 10% extra.”</li>
+                    <li>Incentivos: “Aumenta tu gasto en un 20% y recibe 10% extra.”</li>
                     <li>Gamificación social: competencias entre clientes similares</li>
                 </ul>
             `,
-            impacto: "Generar un comportamiento aspiracional que los mueva al cluster premium."
+            impacto: "Generar comportamiento aspiracional hacia el cluster premium."
         },
-        definicion: "Gasto mensual medio, ingresos anuales altos, perfil: Adultos en etapa media de la vida, con hábitos de gasto prudentes."
+        definicion: "Gasto mensual medio, ingresos altos, adultos en etapa media con hábitos de gasto prudentes."
     }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    const btnCalcular = document.getElementById('btn-calcular');
-    // Aseguramos que el botón sea clicable
-    btnCalcular.style.pointerEvents = 'auto';
-    btnCalcular.style.position = 'relative';
-    btnCalcular.style.zIndex = '9999';
+    const btnBienvenido = document.getElementById('btn-bienvenido');
+    btnBienvenido.style.pointerEvents = 'auto';
+    btnBienvenido.style.position = 'relative';
+    btnBienvenido.style.zIndex = '9999';
 
-    btnCalcular.addEventListener('click', () => {
+    // Al hacer clic en "bienvenido", vamos a la pantalla intermedia
+    btnBienvenido.addEventListener('click', () => {
         document.getElementById('pantalla-inicial').style.display = 'none';
+        document.getElementById('pantalla-intermedia').style.display = 'block';
+        document.body.style.overflow = 'auto';
+    });
+
+    // Al hacer clic en "Continuar" en la pantalla intermedia, vamos a la selección de grupo
+    document.getElementById('btn-continuar').addEventListener('click', () => {
+        document.getElementById('pantalla-intermedia').style.display = 'none';
         document.getElementById('pantalla-seleccion').style.display = 'flex';
         document.body.style.overflow = 'auto';
     });
 
-    // Al hacer clic en una tarjeta de cluster
+    // Al seleccionar un grupo, mostramos el resultado del cluster
     document.querySelectorAll('.cards .card').forEach(card => {
         card.addEventListener('click', () => {
             const clusterId = card.getAttribute('data-cluster');
