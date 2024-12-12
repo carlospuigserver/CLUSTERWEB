@@ -1,4 +1,4 @@
-// Datos de clusters con estrategia (sin necesidad de cálculo)
+// Datos de clusters con estrategia y contenido para las tarjetas
 const clusters = [
     {
         nombre: "Cluster 0",
@@ -20,7 +20,24 @@ const clusters = [
             `,
             impacto: "Aumentar la retención mediante pequeños incentivos frecuentes, generar lealtad."
         },
-        definicion: "Gasto mensual cuota medio, ingresos anuales bajos, perfil: Clientes de ingresos y gastos bajos."
+        definicion: "Gasto mensual cuota medio, ingresos anuales bajos, perfil: Clientes de ingresos y gastos bajos.",
+        gastoMedioMensual: "45€",
+        ingresosAnuales: "21.500€",
+        edadPromedio: "29 años",
+        tarjetas: [
+            {
+                titulo: "Descuentos Especiales",
+                descripcion: "Obtén un 20% de descuento en tu segunda compra cada mes."
+            },
+            {
+                titulo: "Bundles Económicos",
+                descripcion: "Accede a paquetes de productos a precios reducidos."
+            },
+            {
+                titulo: "Puntos de Fidelidad",
+                descripcion: "Gana puntos al registrarte y canjéalos por recompensas."
+            }
+        ]
     },
     {
         nombre: "Cluster 1",
@@ -43,7 +60,24 @@ const clusters = [
             `,
             impacto: "Incrementar la frecuencia de compra y la lealtad, generar promoción orgánica."
         },
-        definicion: "Gasto mensual alto, ingresos anuales altos, perfil: Profesionales con ingresos acomodados."
+        definicion: "Gasto mensual alto, ingresos anuales altos, perfil: Profesionales con ingresos acomodados.",
+        gastoMedioMensual: "47€",
+        ingresosAnuales: "43.500€",
+        edadPromedio: "61 años",
+        tarjetas: [
+            {
+                titulo: "Eventos Exclusivos",
+                descripcion: "Accede a eventos privados y lanzamientos especiales."
+            },
+            {
+                titulo: "Soporte Premium",
+                descripcion: "Recibe asistencia personalizada de gestores dedicados."
+            },
+            {
+                titulo: "Reconocimiento VIP",
+                descripcion: "Sé reconocido como cliente élite y disfruta de beneficios únicos."
+            }
+        ]
     },
     {
         nombre: "Cluster 2-0",
@@ -65,7 +99,24 @@ const clusters = [
             `,
             impacto: "Aumentar ligeramente el ticket promedio, mejorar la percepción de valor."
         },
-        definicion: "Gasto mensual medio, ingresos anuales moderados, clientes mayores y ahorradores."
+        definicion: "Gasto mensual medio, ingresos anuales moderados, clientes mayores y ahorradores.",
+        gastoMedioMensual: "48€",
+        ingresosAnuales: "72.000€",
+        edadPromedio: "44 años",
+        tarjetas: [
+            {
+                titulo: "Bonificaciones Acumulativas",
+                descripcion: "Gasta €100 cada trimestre y recibe €20 de bono."
+            },
+            {
+                titulo: "Acceso Anticipado",
+                descripcion: "Disfruta de ofertas exclusivas antes que el público general."
+            },
+            {
+                titulo: "Entregas Gratuitas",
+                descripcion: "Recibe tus productos favoritos con entregas sin costo."
+            }
+        ]
     },
     {
         nombre: "Cluster 2-1",
@@ -87,7 +138,24 @@ const clusters = [
             `,
             impacto: "Generar comportamiento aspiracional hacia el cluster premium."
         },
-        definicion: "Gasto mensual medio, ingresos altos, adultos en etapa media con hábitos de gasto prudentes."
+        definicion: "Gasto mensual medio, ingresos altos, adultos en etapa media con hábitos de gasto prudentes.",
+        gastoMedioMensual: "58€",
+        ingresosAnuales: "83.000€",
+        edadPromedio: "52 años",
+        tarjetas: [
+            {
+                titulo: "Membresías Plata",
+                descripcion: "Descuentos exclusivos en productos premium."
+            },
+            {
+                titulo: "Bonificaciones por Referidos",
+                descripcion: "Obtén beneficios al referir a nuevos clientes."
+            },
+            {
+                titulo: "Incentivos de Gasto",
+                descripcion: "Aumenta tu gasto en un 20% y recibe un 10% extra."
+            }
+        ]
     }
 ];
 
@@ -111,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'auto';
     });
 
-    // Al seleccionar un grupo, mostramos el loader y luego el resultado del cluster
+    // Al seleccionar un grupo, mostramos el loader y luego la pantalla final con las tarjetas
     document.querySelectorAll('.cards .card').forEach(card => {
         card.addEventListener('click', () => {
             const clusterId = card.getAttribute('data-cluster');
@@ -125,25 +193,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Simulación de tiempo de carga (2 segundos)
                 setTimeout(() => {
                     document.getElementById('loader').style.display = 'none';
-                    document.getElementById('pantalla-cluster').style.display = 'block';
+                    document.getElementById('pantalla-final').style.display = 'flex';
+                    document.body.style.overflow = 'auto';
 
-                    // Mostrar datos del cluster
-                    document.getElementById('resultado-cluster').innerHTML = `
-                        <h3>${clusterSeleccionado.estrategia.titulo}</h3>
-                        <p><strong>Objetivo:</strong> ${clusterSeleccionado.estrategia.objetivo}</p>
-                        <div class="beneficios">
-                            <strong>Beneficios:</strong> ${clusterSeleccionado.estrategia.beneficios}
-                        </div>
-                        <div class="dinamica">
-                            <strong>Dinámica:</strong> ${clusterSeleccionado.estrategia.dinamica}
-                        </div>
-                        <div class="impacto">
-                            <strong>Impacto Esperado:</strong> ${clusterSeleccionado.estrategia.impacto}
-                        </div>
-                        <p><strong>Definición de perfil:</strong> ${clusterSeleccionado.definicion}</p>
-                    `;
+                    // Mostrar datos del cluster en las tarjetas
+                    const tarjetas = clusterSeleccionado.tarjetas;
+                    const cardsFinal = document.querySelectorAll('.cards-final .card');
+
+                    cardsFinal.forEach((cardFinal, index) => {
+                        if (tarjetas[index]) {
+                            cardFinal.querySelector('.card-title').textContent = tarjetas[index].titulo;
+                            cardFinal.querySelector('.card-para').textContent = tarjetas[index].descripcion;
+                        } else {
+                            // Si no hay suficiente contenido, vaciar los campos
+                            cardFinal.querySelector('.card-title').textContent = '';
+                            cardFinal.querySelector('.card-para').textContent = '';
+                        }
+                    });
+
                 }, 2000); // Cambia este tiempo según sea necesario
             }
         });
     });
+
+    // Funcionalidad del botón "Regresar" en la pantalla final
+    const btnRegresarFinal = document.getElementById('btn-regresar-final');
+    if (btnRegresarFinal) {
+        btnRegresarFinal.addEventListener('click', () => {
+            document.getElementById('pantalla-final').style.display = 'none';
+            document.getElementById('pantalla-seleccion').style.display = 'flex';
+        });
+    }
 });
