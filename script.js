@@ -91,10 +91,14 @@ const clusters = [
     }
 ];
 
-// Al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-    // Botón para pasar de la pantalla inicial a la pantalla de selección
-    document.getElementById('btn-calcular').addEventListener('click', () => {
+    const btnCalcular = document.getElementById('btn-calcular');
+    // Aseguramos que el botón sea clicable
+    btnCalcular.style.pointerEvents = 'auto';
+    btnCalcular.style.position = 'relative';
+    btnCalcular.style.zIndex = '9999';
+
+    btnCalcular.addEventListener('click', () => {
         document.getElementById('pantalla-inicial').style.display = 'none';
         document.getElementById('pantalla-seleccion').style.display = 'flex';
         document.body.style.overflow = 'auto';
@@ -104,8 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.cards .card').forEach(card => {
         card.addEventListener('click', () => {
             const clusterId = card.getAttribute('data-cluster');
-
-            // Buscar el cluster por nombre
             const clusterSeleccionado = clusters.find(c => c.nombre.includes(clusterId));
 
             if (clusterSeleccionado) {
