@@ -1,4 +1,3 @@
-// Datos de clusters con estrategia y contenido para las tarjetas
 const clusters = [
     {
         nombre: "Cluster 0",
@@ -21,21 +20,21 @@ const clusters = [
             impacto: "Aumentar la retención mediante pequeños incentivos frecuentes, generar lealtad."
         },
         definicion: "Gasto mensual cuota medio, ingresos anuales bajos, perfil: Clientes de ingresos y gastos bajos.",
-        gastoMedioMensual: "45€",
-        ingresosAnuales: "21.500€",
+        gastoMedioMensual: "45.41€",
+        ingresosAnuales: "21,406.24€",
         edadPromedio: "29 años",
         tarjetas: [
             {
-                titulo: "Descuentos Especiales",
-                descripcion: "Obtén un 20% de descuento en tu segunda compra cada mes."
+                titulo: "¡Oferta de Año Nuevo!",
+                descripcion: "20% de descuento en tu segunda compra cada mes para comenzar el año ahorrando."
             },
             {
                 titulo: "Bundles Económicos",
-                descripcion: "Accede a paquetes de productos a precios reducidos."
+                descripcion: "Paquetes especiales a precios reducidos diseñados para maximizar tu presupuesto."
             },
             {
-                titulo: "Puntos de Fidelidad",
-                descripcion: "Gana puntos al registrarte y canjéalos por recompensas."
+                titulo: "Gana Puntos de Fidelidad",
+                descripcion: "Regístrate ahora y acumula puntos que podrás canjear por increíbles recompensas."
             }
         ]
     },
@@ -61,21 +60,21 @@ const clusters = [
             impacto: "Incrementar la frecuencia de compra y la lealtad, generar promoción orgánica."
         },
         definicion: "Gasto mensual alto, ingresos anuales altos, perfil: Profesionales con ingresos acomodados.",
-        gastoMedioMensual: "47€",
-        ingresosAnuales: "43.500€",
-        edadPromedio: "61 años",
+        gastoMedioMensual: "58.02€",
+        ingresosAnuales: "82,913.95€",
+        edadPromedio: "52.2 años",
         tarjetas: [
             {
-                titulo: "Eventos Exclusivos",
-                descripcion: "Accede a eventos privados y lanzamientos especiales."
+                titulo: "Experiencias Exclusivas de Año Nuevo",
+                descripcion: "Accede a eventos privados y lanzamientos especiales diseñados para ti."
             },
             {
-                titulo: "Soporte Premium",
-                descripcion: "Recibe asistencia personalizada de gestores dedicados."
+                titulo: "Soporte Premium 24/7",
+                descripcion: "Disfruta de asistencia personalizada en cualquier momento con nuestro soporte  exclusivo."
             },
             {
                 titulo: "Reconocimiento VIP",
-                descripcion: "Sé reconocido como cliente élite y disfruta de beneficios únicos."
+                descripcion: "Sé reconocido como cliente élite y accede a beneficios únicos durante todo el año."
             }
         ]
     },
@@ -100,21 +99,21 @@ const clusters = [
             impacto: "Aumentar ligeramente el ticket promedio, mejorar la percepción de valor."
         },
         definicion: "Gasto mensual medio, ingresos anuales moderados, clientes mayores y ahorradores.",
-        gastoMedioMensual: "48€",
-        ingresosAnuales: "72.000€",
-        edadPromedio: "44 años",
+        gastoMedioMensual: "46.58€",
+        ingresosAnuales: "43,520.77€",
+        edadPromedio: "61 años",
         tarjetas: [
             {
-                titulo: "Bonificaciones Acumulativas",
-                descripcion: "Gasta €100 cada trimestre y recibe €20 de bono."
+                titulo: "Bonificaciones Acumulativas de Año Nuevo",
+                descripcion: "Gasta €100 cada trimestre y recibe €20 de bono para tus próximas compras."
             },
             {
-                titulo: "Acceso Anticipado",
-                descripcion: "Disfruta de ofertas exclusivas antes que el público general."
+                titulo: "Acceso Anticipado a Ofertas",
+                descripcion: "Disfruta de nuestras mejores ofertas antes que nadie y aprovecha descuentos exclusivos."
             },
             {
                 titulo: "Entregas Gratuitas",
-                descripcion: "Recibe tus productos favoritos con entregas sin costo."
+                descripcion: "Recibe tus productos favoritos sin costo de envío durante las festividades de Año Nuevo."
             }
         ]
     },
@@ -139,21 +138,21 @@ const clusters = [
             impacto: "Generar comportamiento aspiracional hacia el cluster premium."
         },
         definicion: "Gasto mensual medio, ingresos altos, adultos en etapa media con hábitos de gasto prudentes.",
-        gastoMedioMensual: "58€",
-        ingresosAnuales: "83.000€",
-        edadPromedio: "52 años",
+        gastoMedioMensual: "47.94€",
+        ingresosAnuales: "72,360.64€",
+        edadPromedio: "43.5 años",
         tarjetas: [
             {
-                titulo: "Membresías Plata",
-                descripcion: "Descuentos exclusivos en productos premium."
+                titulo: "Membresías Plata con Descuentos Especiales",
+                descripcion: "Accede a descuentos exclusivos en productos premium y comienza el año con ventajas únicas."
+            },
+            {
+                titulo: "Incentivos de Gasto de Año Nuevo",
+                descripcion: "Aumenta tu gasto en un 20% y recibe un 10% extra en beneficios exclusivos."
             },
             {
                 titulo: "Bonificaciones por Referidos",
-                descripcion: "Obtén beneficios al referir a nuevos clientes."
-            },
-            {
-                titulo: "Incentivos de Gasto",
-                descripcion: "Aumenta tu gasto en un 20% y recibe un 10% extra."
+                descripcion: "Refiere a nuevos clientes y obtén bonificaciones especiales como agradecimiento."
             }
         ]
     }
